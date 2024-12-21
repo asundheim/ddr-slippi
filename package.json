@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "@slippi/slippi-js": "^6.7.0"
+  },
+  "devDependencies": {
+    "electron": "^33.2.1"
+  },
+  "scripts": {
+    "start": "electron ."
+  },
+  "main": "host.js",
+  "name": "ddr-slippi",
+  "version": "1.0.0",
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

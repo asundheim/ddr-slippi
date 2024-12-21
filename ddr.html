@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <style>
+            /* @keyframes arrow
+            {
+                0% {top:100%}
+                95% {top:0%;}
+                100% {top:0%; visibility: hidden;}
+            } */
+
+            .arrow
+            {
+                position: absolute;
+                width: 50px;
+                height: 50px;
+            }
+
+            .arrow-target
+            {
+                width: 50px;
+                height: 50px;
+                position: absolute;
+                top:0%;
+                z-index: -100000000;
+            }
+
+            .left, .leftc
+            {
+                left: 5px;
+            }
+
+            .down, .downc
+            {
+                left: 60px
+            }
+
+            .up, .upc
+            {
+                left: 115px;
+            }
+
+            .right, .rightc
+            {
+                left: 170px;
+            }
+
+            .a
+            {
+                left: 225px;
+            }
+
+            .b
+            {
+                left: 280px
+            }
+
+            .y
+            {
+                left: 335px;
+            }
+
+            .z
+            {
+                left: 390px;
+            }
+
+            .rt
+            {
+                left: 445px;
+            }
+
+            .text
+            {
+                left: 60px;
+                top: 90px;
+                position: absolute;
+            }
+        </style>
+    </head>
+    <body>
+        <img src="assets/arrow_down_target.png" class="arrow-target down"/>
+        <img src="assets/arrow_up_target.png" class="arrow-target up"/>
+        <img src="assets/arrow_left_target.png" class="arrow-target left"/>
+        <img src="assets/arrow_right_target.png" class="arrow-target right"/>
+        <img src="assets/arrow_a_target.png" class="arrow-target a"/>
+        <img src="assets/arrow_b_target.png" class="arrow-target b"/>
+        <img src="assets/arrow_y_target.png" class="arrow-target y"/>
+        <img src="assets/arrow_z_target.png" class="arrow-target z"/>
+        <img src="assets/arrow_rt_target.png" class="arrow-target rt"/>
+        <script src="replayer.js"></script>
+    </body>
+    
+</html>
