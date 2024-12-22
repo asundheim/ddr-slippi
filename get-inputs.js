@@ -1,10 +1,20 @@
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+
 const { SlippiGame } = require("@slippi/slippi-js");
+const fs = require('fs')
 
 const game = new SlippiGame("data/game.slp");
 
 const frames = game.getFrames();
-const start = 108 * 60
-const end = 125 * 60
+let recording_range = JSON.parse(fs.readFileSync('data/playback_new.json'))
+let start = recording_range.startFrame
+let end = recording_range.endFrame
+
+console.log(`startFrame: ${start} endFrame: ${end}`)
+
+let ders_port = game.getMetadata().players[0].names.netplay === "ders" ? 0 : 1
+console.log(`ders is player ${ders_port}`)
 
 function is_set(buttonState, mask)
 {
@@ -65,11 +75,12 @@ let frameData =
 
 for (let i = start; i < end; i++)
 {
-    let out = getInput(frames[i].players[1].pre.buttons, frames[i-1].players[1].pre.buttons)
+    let out = getInput(frames[i].players[ders_port].pre.buttons, frames[i-1].players[ders_port].pre.buttons)
 
     frameData["frames"].push(out)
 }
 
 var json = JSON.stringify(frameData)
-var fs = require('fs')
-fs.writeFile('data/ddr.json', json, 'utf8', () => {})
+fs.writeFileSync('data/ddr.json', json, 'utf8', () => {})
+
+process.exit(0)

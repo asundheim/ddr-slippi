@@ -1,6 +1,8 @@
 {
   "dependencies": {
-    "@slippi/slippi-js": "^6.7.0"
+    "@slippi/slippi-js": "^6.7.0",
+    "find-process": "^1.4.7",
+    "obs-websocket-js": "^5.0.6"
   },
   "devDependencies": {
     "electron": "^33.2.1"
@@ -9,7 +11,7 @@
     "start": "electron ."
   },
   "main": "host.js",
-  "name": "ddr-slippi",
+  "name": "electron-slippi-arrows",
   "version": "1.0.0",
   "author": "",
   "license": "ISC",
