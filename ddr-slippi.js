@@ -42,6 +42,12 @@ function set_stage_only_gecko()
     fs.writeFileSync(`${gecko_code_path}`, stage_only_ini_contents)
 }
 
+function set_unmodified_gecko()
+{
+    let unmodified_ini_contents = fs.readFileSync('data/unmodified.ini')
+    fs.writeFileSync(`${gecko_code_path}`, unmodified_ini_contents)
+}
+
 const gecko_code_path = 'C:\\Users\\ander\\AppData\\Roaming\\Slippi Launcher\\playback\\User\\GameSettings\\GALE01.ini'
 
 const obs_settings = {
@@ -279,5 +285,7 @@ await set_output_filename(obs, `arrows-${playbackInfo.endFrame}`)
 await record_arrows();
 
 await obs.disconnect();
+
+set_unmodified_gecko();
 
 process.exit(0)

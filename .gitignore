@@ -1,5 +1,7 @@
 node_modules/
-data/
+data/game.slp
+data/playback_new.json
+data/ddr.json
 videos/
 old/
 assets/Thumbs.db
