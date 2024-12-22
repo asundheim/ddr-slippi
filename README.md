@@ -24,3 +24,14 @@ After getting everything set up, this program will automatically(ish):
 - Play back the inputs into an Electron window rendering the arrows, and record that - it should be almost 3 seconds longer, but it will be a consistent offset from the gameplay clips to make it easier to composite
 - Reset gecko codes for future playback
 - All outputs go to `videos/{frame_end_number}/`
+
+## Building
+`npm install`, then `npm ./ddr-slippi.js` will begin execution.
+
+`/data` contains configuration files.
+
+`/assets` contains all images used for the animations.
+
+Recordings are saved to `/videos`.
+
+Adding a new configuration archives the previous `.slp` and `playback.json` into `/old`.
