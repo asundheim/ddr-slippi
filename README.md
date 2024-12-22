@@ -1,7 +1,7 @@
 # ddr-slippi
 This is a collection of scripts and tools to generate input overlays from a Slippi replay in the style of Dance Dance Revolution:
 
-<video src="assets/example.mp4"></video>
+![](assets/example.gif)
 
 The tricky part is recording the characters and the stage separately, so they can be composited together with the arrow animations. As it stands, this project is incredibly unportable, as to run it yourself you will need to configure:
 - OBS websocket settings
