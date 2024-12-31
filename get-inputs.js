@@ -15,6 +15,8 @@ console.log(`startFrame: ${start} endFrame: ${end}`)
 
 let ders_port = game.getMetadata().players[0].names.netplay === "ders" ? 0 : 1
 console.log(`ders is player ${ders_port}`)
+const opp = game.getMetadata().players[ders_port ^ 1]
+let opp_name = opp.names.code
 
 function is_set(buttonState, mask)
 {
@@ -70,7 +72,11 @@ function getInput(currentButtons, previousButtons)
 
 let frameData = 
 {
-    frames: []
+    frames: [],
+    opp:
+    {
+        name: opp_name
+    }
 }
 
 for (let i = start; i < end; i++)

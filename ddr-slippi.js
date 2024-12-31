@@ -5,6 +5,7 @@ const OBSWebSocket = require('obs-websocket-js').OBSWebSocket;
 const fs = require('fs')
 const readline = require('readline');
 const find = require('find-process')
+const { SlippiGame } = require("@slippi/slippi-js");
 
 const rl = readline.createInterface(
     {
@@ -215,6 +216,8 @@ const new_playback_path = 'data/playback_new.json'
 let playbackInfo = JSON.parse(fs.readFileSync(playback_path))
 console.log(`got data: ${playbackInfo.startFrame}, ${playbackInfo.endFrame}, ${playbackInfo.replay}`)
 
+let replay_data = null
+
 let command = await askQuestion("Frame Start: ")
 if (command !== "")
 {
@@ -226,9 +229,12 @@ if (command !== "")
     console.log(`ending recording at frame ${new_end_frame}`)
 
     console.log('archiving previous config and replay...')
-    fs.mkdirSync(`old/${playbackInfo.endFrame}`, {recursive: true})
-    fs.writeFileSync(`old/${playbackInfo.endFrame}/${playbackInfo.endFrame}.json`, JSON.stringify(playbackInfo))
-    fs.copyFileSync('data/game.slp', `old/${playbackInfo.endFrame}/${playbackInfo.endFrame}.slp`)
+
+    replay_data = JSON.parse(fs.readFileSync('data/ddr.json'))
+
+    fs.mkdirSync(`old/${playbackInfo.endFrame}-${replay_data.opp.name}`, {recursive: true})
+    fs.writeFileSync(`old/${playbackInfo.endFrame}-${replay_data.opp.name}/${playbackInfo.endFrame}-${replay_data.opp.name}.json`, JSON.stringify(playbackInfo))
+    fs.copyFileSync('data/game.slp', `old/${playbackInfo.endFrame}-${replay_data.opp.name}/${playbackInfo.endFrame}-${replay_data.opp.name}.slp`)
 
     playbackInfo.startFrame = new_start_frame
     playbackInfo.endFrame = new_end_frame
@@ -242,12 +248,21 @@ if (command !== "")
 else
 {
     console.log('Recording previous...')
+    const game = new SlippiGame("data/game.slp");
+
+    let ders_port = game.getMetadata().players[0].names.netplay === "ders" ? 0 : 1
+    console.log(`ders is player ${ders_port}`)
+
+    const opp = game.getMetadata().players[ders_port ^ 1]
+    let opp_name = opp.names.code
+
+    replay_data = {opp: {name: opp_name}}
 }
 
 // time to do stuff
-await set_output_folder(obs, `C:\\src\\ddr-slippi\\videos\\${playbackInfo.endFrame}\\`)
+await set_output_folder(obs, `C:\\src\\ddr-slippi\\videos\\${playbackInfo.endFrame}-${replay_data.opp.name}\\`)
 await set_scene(obs, 'slippi')
-await set_output_filename(obs, `characters-${playbackInfo.endFrame}`)
+await set_output_filename(obs, `characters-${playbackInfo.endFrame}-${replay_data.opp.name}`)
 
 // first get the greenscreen recording
 set_player_only_gecko()
@@ -270,7 +285,7 @@ await kill_slippis()
 // done with greenscreen, now get background
 set_stage_only_gecko()
 await set_scene(obs, 'slippi')
-await set_output_filename(obs, `stage-${playbackInfo.endFrame}`)
+await set_output_filename(obs, `stage-${playbackInfo.endFrame}-${replay_data.opp.name}`)
 await launchDolphinForRecording(obs, playbackInfo.startFrame, playbackInfo.endFrame, new_playback_path, true)
 
 await kill_slippis()
@@ -280,7 +295,7 @@ await read_write_inputs()
 
 // now record the arrows
 await set_scene(obs, 'ddr')
-await set_output_filename(obs, `arrows-${playbackInfo.endFrame}`)
+await set_output_filename(obs, `arrows-${playbackInfo.endFrame}-${replay_data.opp.name}`)
 
 await record_arrows();
 
