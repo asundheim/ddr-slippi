@@ -32,7 +32,7 @@ You'll need to configure your playback Slippi to open at the same resolution. So
 
 For the recording file, you'll need to put your `.slp` into `data/` as `game.slp`. You can go straight to the file on your machine from the Slippi launcher by clicking the triple-dots and selecting "Reveal location"
 
-To gather the frame ranges, you can turn on (in Dolphin) `Config -> Interface -> On-screen display messages` and `Config-> Slippi -> Display frame index`. I suggest turning the latter option on and toggling the former option so that you don't have to deal with other on screen display messages polluting the recording when you're done gather the frame range.
+To gather the frame ranges, you can turn on (in Dolphin) `Config -> Interface -> On-screen display messages` and `Config-> Slippi -> Display frame index`. I suggest turning the latter option on and toggling the former option so that you don't have to deal with other on screen display messages polluting the recording when you're done gathering the frame range.
 
 ### OBS
 You'll need the latest version of OBS (31.0.0 at the time of writing) to utilize the new websocket protocol. Then,
