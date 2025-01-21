@@ -59,7 +59,7 @@ For `ddr`, you can (after following the building steps below) run `npm start` to
 All paths in `data/config.json` need to be set up in order for things to work. You can make a new file `data/config.local.json` if you want to contribute without accidentally checking in your own paths.
 
 For reference:
-```json
+```jsonc
 {
     "obs_websocket": {
         // for ipv6 (the ugly ones), enclose the address in 
