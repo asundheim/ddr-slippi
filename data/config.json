@@ -1,0 +1,10 @@
+{
+    "obs_websocket": {
+        "ip": "ws://[ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff]",
+        "port": "1010"
+    },
+    "slippi_replay_gecko_path": "C:\\Users\\username\\AppData\\Roaming\\Slippi Launcher\\playback\\User\\GameSettings\\GALE01.ini",
+    "slippi_replay_exe_path": "C:\\Users\\username\\AppData\\Roaming\\Slippi Launcher\\playback\\Slippi Dolphin.exe",
+    "ssbm_iso_path": "C:\\Users\\username\\Downloads\\GALE01.iso",
+    "your_connect_code": "D#10"
+}

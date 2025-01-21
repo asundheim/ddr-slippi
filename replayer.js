@@ -29,10 +29,7 @@ ipc.on('[START]', () => {
             for (let j = 0; j < data.frames[i].length; j++)
             {
                 let button = data.frames[i][j];
-    
-                // var container = document.createElement('div')
-                // container.className = `${button} ${button}_`
-    
+
                 const arrowAnimation = 
                 [
                     { 

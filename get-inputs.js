@@ -13,9 +13,12 @@ let end = recording_range.endFrame
 
 console.log(`startFrame: ${start} endFrame: ${end}`)
 
-let ders_port = game.getMetadata().players[0].names.netplay === "ders" ? 0 : 1
-console.log(`ders is player ${ders_port}`)
-const opp = game.getMetadata().players[ders_port ^ 1]
+let config_path = fs.existsSync('data/config.local.json') ? 'data/config.local.json' : 'data/config.json'
+let config = JSON.parse(fs.readFileSync(config_path))
+
+let your_port = game.getMetadata().players[0].names.code === config.your_connect_code ? 0 : 1
+console.log(`${game.getMetadata().players[your_port].names.netplay} is player ${your_port}`)
+const opp = game.getMetadata().players[your_port ^ 1]
 let opp_name = opp.names.code
 
 function is_set(buttonState, mask)
@@ -26,6 +29,8 @@ function is_set(buttonState, mask)
 function getInput(currentButtons, previousButtons)
 {
     let s = (currentButtons ^ previousButtons) & currentButtons;
+
+    // TODO handle X/LT (UI needs to handle the asset loading and styling for them)
     const stick_up = 0x00010000
     const stick_down = 0x00020000
     const stick_left = 0x00040000
@@ -81,7 +86,7 @@ let frameData =
 
 for (let i = start; i < end; i++)
 {
-    let out = getInput(frames[i].players[ders_port].pre.buttons, frames[i-1].players[ders_port].pre.buttons)
+    let out = getInput(frames[i].players[your_port].pre.buttons, frames[i-1].players[your_port].pre.buttons)
 
     frameData["frames"].push(out)
 }
