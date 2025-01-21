@@ -44,12 +44,15 @@ You can find the server IP and port for the next step under "Show Connect Info"
 You'll need 2 scenes created with specific names and accessible for the program:
 - `slippi` (configured to record the slippi playback exe)
 - `ddr` (configured to record the electron window that plays the arrows back)
+
 ![](assets/ex_scenes.png)
 
 There are many guides online to customizing recording for slippi, but in order for things to work it will need to not get stuck when switching scenes. I've found that window captures generally work better for Dolphin than game captures, although game captures can be more performant if they do work.
+
 ![](assets/ex_dolphin_obs.png)
 
 For `ddr`, you can (after following the building steps below) run `npm start` to launch the electron window that will host the arrows playback, and set up your OBS scene while it's running.
+
 ![](assets/ex_ddr_obs.png)
 
 ### config.json
